@@ -1,7 +1,7 @@
 package router
 
 import (
-	"net/http"
+	"gopportunities/router/handlers"
 
 	"github.com/gin-gonic/gin"
 )
@@ -10,21 +10,11 @@ func InitializeRoutes(router *gin.Engine) {
 	routerApi := router.Group("/api")
 
 	{
-		routerApi.GET("/esporte", func(context *gin.Context) {
-			context.JSON(http.StatusOK, gin.H{"message": "GET"})
-		})
-		routerApi.POST("/esporte", func(context *gin.Context) {
-			context.JSON(http.StatusOK, gin.H{"message": "POST"})
-		})
-		routerApi.DELETE("/esporte", func(context *gin.Context) {
-			context.JSON(http.StatusOK, gin.H{"message": "DELETE"})
-		})
-		routerApi.PUT("/esporte", func(context *gin.Context) {
-			context.JSON(http.StatusOK, gin.H{"message": "UPDATE"})
-		})
-		routerApi.GET("/esportes", func(context *gin.Context) {
-			context.JSON(http.StatusOK, gin.H{"message": "GET ESPORTESSSS"})
-		})
+		routerApi.GET("/esporte", handlers.GetSport)
+		routerApi.POST("/esporte", handlers.CreateSport)
+		routerApi.DELETE("/esporte", handlers.DeleteSport)
+		routerApi.PUT("/esporte", handlers.UpdateSport)
+		routerApi.GET("/esportes", handlers.GetSports)
 	}
 
 	// router.GET("/healthcheck", func(context *gin.Context) {
